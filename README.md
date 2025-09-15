@@ -235,6 +235,60 @@ Authorization: Bearer <access_token>
 - Frontend: Vercel/Netlify. Backend: Render/Railway/Heroku.
 - Set environment variables securely; update frontend API base via `REACT_APP_*` if needed.
 
+## Deploy Frontend to Vercel
+
+This project uses Create React App for the frontend located in `frontend/`.
+
+1) Prepare environment variables (optional)
+   - If the frontend needs a custom API base, create `frontend/.env` with:
+     ```
+     REACT_APP_API_BASE_URL=https://your-backend.example.com
+     ```
+   - Commit or add in Vercel Project Settings → Environment Variables.
+
+2) Push your repository to GitHub/GitLab/Bitbucket
+
+3) Import the repo into Vercel
+   - When prompted to select the root directory, choose `frontend` (not the monorepo root)
+   - Framework Preset: Create React App
+   - Build Command: `npm run build`
+   - Install Command: `npm install`
+   - Output Directory: `build`
+
+4) Configure SPA routing (prevents 404 on refresh)
+   - In `frontend`, create `vercel.json` with these rewrites:
+     ```json
+     {
+       "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
+     }
+     ```
+   - Commit and redeploy. This ensures routes like `/login` or anchors work in a single-page app.
+
+5) Set environment variables in Vercel
+   - Go to Project Settings → Environment Variables
+   - Add any `REACT_APP_*` variables (e.g., `REACT_APP_API_BASE_URL`)
+   - Redeploy to apply
+
+6) Connect a custom domain (optional)
+   - Add your domain in Vercel → Domains and follow the DNS instructions
+
+Notes
+- The Google OAuth Client ID currently lives in `frontend/src/index.js`. For production, move it to an env variable (e.g., `REACT_APP_GOOGLE_CLIENT_ID`) and pass it to `GoogleOAuthProvider`.
+- The marketing landing page is at `/` and the auth page is at `/login`.
+- Backend must support CORS for the deployed Vercel domain.
+
+## Deploy Backend (suggested options)
+
+Use Render/Railway/Fly/Heroku. Minimal steps (Render as example):
+
+1) Create a new Web Service from this repo, set root directory to `backend`
+2) Environment → add the variables from the `.env` block above
+3) Build Command: `npm install`
+4) Start Command: `node server.js`
+5) Ensure `PORT` is set by the platform or to `5000`, and allow CORS `CORS_ORIGIN` for your Vercel domain
+
+After deploy, set `REACT_APP_API_BASE_URL` in Vercel to the backend URL.
+
 ## Postman
 - Collection: `postman/Xeno-CRM.postman_collection.json`
 - Environment: `postman/Xeno-CRM.postman_environment.json`
