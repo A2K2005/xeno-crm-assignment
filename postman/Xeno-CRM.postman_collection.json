@@ -1,0 +1,157 @@
+{
+  "info": {
+    "name": "Xeno CRM API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "1. Authentication",
+      "item": [
+        {
+          "name": "OAuth - Exchange Google ID Token",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/auth/google", "host": ["{{base_url}}"], "path": ["auth","google"] },
+            "body": { "mode": "raw", "raw": "{\n  \"id_token\": \"{{google_id_token}}\"\n}" }
+          },
+          "response": [ { "name": "200 OK", "originalRequest": {}, "status": "OK", "code": 200, "_postman_previewlanguage": "json", "body": "{\n  \"access_token\": \"...\",\n  \"refresh_token\": \"...\",\n  \"expires_in\": 900\n}" } ]
+        },
+        {
+          "name": "Refresh Access Token",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/auth/refresh", "host": ["{{base_url}}"], "path": ["auth","refresh"] },
+            "body": { "mode": "raw", "raw": "{\n  \"refresh_token\": \"{{refresh_token}}\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "2. Data Ingestion",
+      "item": [
+        {
+          "name": "Create Customer",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/customers", "host": ["{{base_url}}"], "path": ["api","customers"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"phone\": \"+1-555-123-4567\",\n  \"city\": \"Delhi\"\n}" }
+          }
+        },
+        {
+          "name": "Create Order",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/orders", "host": ["{{base_url}}"], "path": ["api","orders"] },
+            "body": { "mode": "raw", "raw": "{\n  \"customer_id\": 1,\n  \"amount\": 1999,\n  \"date\": \"2025-09-15\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "3. Segment Management",
+      "item": [
+        {
+          "name": "Preview Audience",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/segments/preview", "host": ["{{base_url}}"], "path": ["api","segments","preview"] },
+            "body": { "mode": "raw", "raw": "{\n  \"conditions\": [ { \"field\": \"amount\", \"operator\": \">\", \"value\": 10000 } ],\n  \"logic\": \"AND\"\n}" }
+          }
+        },
+        {
+          "name": "Create Segment",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/segments/create", "host": ["{{base_url}}"], "path": ["api","segments","create"] },
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"High spenders\",\n  \"conditions\": [ { \"field\": \"amount\", \"operator\": \">\", \"value\": 10000 } ],\n  \"logic\": \"AND\",\n  \"description\": \"Segment created from Postman\"\n}" }
+          }
+        },
+        {
+          "name": "AI Parse Conditions",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/segments/parse", "host": ["{{base_url}}"], "path": ["api","segments","parse"] },
+            "body": { "mode": "raw", "raw": "{\n  \"prompt\": \"users who spent over 10000 and inactive for 90 days\"\n}" }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Campaign Management",
+      "item": [
+        {
+          "name": "Create Campaign",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" }, { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/campaigns/create", "host": ["{{base_url}}"], "path": ["api","campaigns","create"] },
+            "body": { "mode": "raw", "raw": "{\n  \"segment_id\": 1,\n  \"message_template\": \"Hi {name}, here\\u0027s 10% off!\",\n  \"campaign_name\": \"Test Campaign\"\n}" }
+          }
+        },
+        {
+          "name": "Campaign Stats",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" } ],
+            "url": { "raw": "{{base_url}}/api/campaigns/1/stats", "host": ["{{base_url}}"], "path": ["api","campaigns","1","stats"] }
+          }
+        },
+        {
+          "name": "List Campaigns",
+          "request": {
+            "method": "GET",
+            "header": [ { "key": "Authorization", "value": "Bearer {{access_token}}" } ],
+            "url": { "raw": "{{base_url}}/api/campaigns", "host": ["{{base_url}}"], "path": ["api","campaigns"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "5. Delivery System",
+      "item": [
+        {
+          "name": "Vendor Send (dummy)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/vendor/dummy/send", "host": ["{{base_url}}"], "path": ["vendor","dummy","send"] },
+            "body": { "mode": "raw", "raw": "{\n  \"customer_id\": 1,\n  \"message\": \"Hello!\",\n  \"campaign_id\": \"1\",\n  \"delivery_method\": \"email\"\n}" }
+          }
+        },
+        {
+          "name": "Delivery Receipt (single)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/delivery/receipt", "host": ["{{base_url}}"], "path": ["api","delivery","receipt"] },
+            "body": { "mode": "raw", "raw": "{\n  \"delivery_id\": 1,\n  \"status\": \"SENT\",\n  \"timestamp\": \"2025-09-15T12:00:00Z\"\n}" }
+          }
+        },
+        {
+          "name": "Delivery Receipt (batch)",
+          "request": {
+            "method": "POST",
+            "header": [ { "key": "Content-Type", "value": "application/json" } ],
+            "url": { "raw": "{{base_url}}/api/delivery/receipt", "host": ["{{base_url}}"], "path": ["api","delivery","receipt"] },
+            "body": { "mode": "raw", "raw": "[\n  { \"delivery_id\": 1, \"status\": \"SENT\" },\n  { \"delivery_id\": 2, \"status\": \"FAILED\", \"failure_reason\": \"network_error\" }\n]" }
+          }
+        }
+      ]
+    }
+  ],
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": { "exec": [ "// Attach Authorization header if access_token set", "if (pm.environment.get('access_token')) { pm.request.headers.add({ key: 'Authorization', value: 'Bearer ' + pm.environment.get('access_token') }); }" ], "type": "text/javascript" }
+    }
+  ]
+}
+
+

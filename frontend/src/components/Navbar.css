@@ -1,0 +1,35 @@
+.dashboard-navbar {
+  background-color: white;
+  padding: 0.4rem 2rem; 
+  font-size: 0.92rem;
+}
+
+.dashboard-navbar .navbar-nav {
+  margin-left: 1rem; 
+}
+
+.dashboard-navbar .nav-item {
+  margin-right: 0.8rem;
+  padding-right: 0.8rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dashboard-navbar .nav-item:last-child {
+  border-right: none;
+  margin-right: 0;
+  padding-right: 0;
+}
+
+.dashboard-navbar .nav-link.btn {
+  padding: 0.35rem 0.75rem;
+  font-weight: 500;
+  border-radius: 0.25rem;
+  transition: background-color 0.2s ease;
+  color: #333;
+}
+
+.dashboard-navbar .nav-link.active {
+  background-color: #f0f0f0;
+  font-weight: 600;
+  color: #000;
+}

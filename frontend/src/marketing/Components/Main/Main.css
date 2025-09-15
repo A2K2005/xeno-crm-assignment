@@ -1,0 +1,196 @@
+:root {
+  --primaryColor: #eaf2ff;
+  --textColor: #1e3a8a;
+  --blackTextColor: #0f172a;
+  --bg-button: #1d4ed8;
+  --whiteColor: #f8fafc;
+}
+
+.mainSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainSection1 {
+  gap: 1rem;
+  padding: 0rem 4rem;
+}
+
+.featureImg {
+  width: 50%;
+  z-index: 100;
+}
+
+.featureImg img {
+  width: 90%;
+}
+
+.featureContent {
+  width: 50%;
+  color: var(--textColor);
+  position: relative;
+  top: -5rem;
+}
+
+.featureContent h1 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+}
+
+.featureContent p {
+  margin-bottom: 1.5rem;
+  color: var(--blackTextColor);
+  font-size: 1rem;
+}
+
+.featureContentLinks {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.featureContentLinks li a {
+  color: var(--textColor);
+  font-weight: 500;
+}
+
+a .icon {
+  transform: translateY(2px);
+  font-size: 1rem;
+}
+
+.featureContent button {
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--textColor);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.featureBtn .icon {
+  transform: translateY(2px);
+  margin-left: 0.5rem;
+}
+
+.featureBtn .icon svg {
+  background: var(--primaryColor);
+}
+
+.featureContent button:hover {
+  transform: translateX(3px);
+  transition: 0.3s ease-in-out;
+}
+
+.mainSection2 {
+  padding: 0 6rem;
+  background: var(--primaryColor);
+  width: 100%;
+  height: 100vh;
+  float: right;
+  gap: 8rem;
+  justify-content: flex-end;
+  position: relative;
+  top: -4rem;
+}
+
+.featureImg2 {
+  width: 45%;
+}
+
+.featureContent2 {
+  width: 45%;
+  float: right;
+  top: 0;
+}
+
+@media screen and (max-width: 769px) {
+  .mainSection1 {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .featureImg {
+    width: 100%;
+  }
+
+  .featureImg img {
+    width: 100%;
+  }
+
+  .featureContent {
+    width: 100%;
+    margin-top: 4rem;
+  }
+
+  .mainSection2 {
+    flex-direction: column-reverse;
+    padding: 2rem 4rem;
+    top: 0;
+    gap: 0rem;
+    height: fit-content;
+  }
+
+  .featureContent2 {
+    margin-top: 2rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .companySection {
+    width: 90%;
+  }
+
+  .mainSection1 {
+    padding: 0 2rem;
+  }
+
+  .featureContentLinks {
+    grid-template-columns: repeat(1, 1fr);
+    row-gap: 0.8rem;
+  }
+
+  .mainSection2 {
+    padding: 2rem;
+  }
+}
+
+@media screen and (min-width: 770px) and (max-width: 1224px) {
+  .featureContent {
+    width: 50%;
+    top: -1rem;
+  }
+
+  .featureContent h1 {
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .featureContent p {
+    margin-bottom: 0.5rem;
+  }
+
+  .featureContentLinks {
+    row-gap: 0.5rem;
+  }
+
+  .featureImg {
+    width: 50%;
+  }
+
+  .mainSection2 {
+    gap: 2rem;
+    padding: 0rem 4rem;
+    top: -2rem;
+  }
+}
+
+@media screen and (min-width: 770px) and (max-width: 1024px) {
+  .featureContent {
+    top: -2rem;
+  }
+}
+
+
