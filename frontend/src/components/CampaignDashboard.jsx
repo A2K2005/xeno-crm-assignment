@@ -23,10 +23,10 @@ const CampaignDashboard = () => {
     const load = async () => {
       try {
         const [mRes, cRes, sRes, dRes] = await Promise.all([
-          axios.get('http://localhost:5000/api/campaigns/overview/metrics', { withCredentials: true }),
-          axios.get('http://localhost:5000/api/campaigns', { withCredentials: true }),
-          axios.get('http://localhost:5000/api/segments', { withCredentials: true }),
-          axios.get('http://localhost:5000/api/delivery/recent', { withCredentials: true })
+          axios.get('https://xenoapi.jsondev.in/api/campaigns/overview/metrics', { withCredentials: true }),
+          axios.get('https://xenoapi.jsondev.in/api/campaigns', { withCredentials: true }),
+          axios.get('https://xenoapi.jsondev.in/api/segments', { withCredentials: true }),
+          axios.get('https://xenoapi.jsondev.in/api/delivery/recent', { withCredentials: true })
         ]);
         setMetrics(mRes.data);
         setRecentCampaigns(cRes.data.slice(0, 5));

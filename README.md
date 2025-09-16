@@ -3,7 +3,7 @@ Modern mini‑CRM: customer ingestion, smart audience segmentation, and simulate
 
 ## Live & Demo
 - Frontend (Vercel): add your URL here
-- Backend (Render): add your URL here
+- Backend: https://xenoapi.jsondev.in/
 - Postman collection: `postman/Xeno-CRM.postman_collection.json`
 
 ## Highlights
@@ -69,7 +69,7 @@ cd ../frontend
 npm install
 npm start
 ```
-URLs: Frontend http://localhost:3000 · Backend http://localhost:5000
+URLs: Frontend http://localhost:3000 · Backend https://xenoapi.jsondev.in
 
 ## Deployment
 Frontend (Vercel)
@@ -81,7 +81,7 @@ Frontend (Vercel)
 { "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }] }
 ```
 5) Env vars (Vercel → Settings → Environment Variables):
-- REACT_APP_API_BASE_URL=https://your-backend.onrender.com
+- REACT_APP_API_BASE_URL=https://xenoapi.jsondev.in
 - Optional: REACT_APP_GOOGLE_CLIENT_ID=your_google_client_id
 
 Backend (Render example)

@@ -64,7 +64,7 @@ const QueryBuilder = () => {
     }
 
     try {
-      const response = await axios.post('http://localhost:5000/api/segments/preview', {
+      const response = await axios.post('https://xenoapi.jsondev.in/api/segments/preview', {
         conditions: filteredConditions.map(c => ({ field: c.field.replace(' ', '_'), operator: c.operator, value: Number(c.value) })),
         logic: filteredConditions[1]?.connector || 'AND'
       });
@@ -80,7 +80,7 @@ const QueryBuilder = () => {
     if (!prompt) return;
     try {
       setLoadingAI(true);
-      const res = await axios.post('http://localhost:5000/api/ai/parse-query', { prompt });
+      const res = await axios.post('https://xenoapi.jsondev.in/api/ai/parse-query', { prompt });
       setConditions(res.data);
     } catch (err) {
       console.error('AI Parsing Error:', err);
@@ -108,7 +108,7 @@ const QueryBuilder = () => {
     };
 
     try {
-      const res = await axios.post('http://localhost:5000/api/mail/send', payload);
+      const res = await axios.post('https://xenoapi.jsondev.in/api/mail/send', payload);
       const status = res.data.status || 'unknown';
 
       setSendingStatus(prev => ({ ...prev, [cust.customerId]: status }));
@@ -133,7 +133,7 @@ const QueryBuilder = () => {
           subject: `Hey ${cust.name}, We have got an offer for you!!`
         };
 
-        const res = await axios.post('http://localhost:5000/api/mail/send', payload);
+        const res = await axios.post('https://xenoapi.jsondev.in/api/mail/send', payload);
         statuses[cust.customerId] = res.data.status || 'unknown';
       } catch {
         statuses[cust.customerId] = 'failed';
@@ -268,7 +268,7 @@ const QueryBuilder = () => {
           try {
             // First create (or reuse) a segment for persistence
             const filteredConditions = conditions.filter(cond => cond.field && cond.operator && cond.value !== '');
-            const createSeg = await axios.post('http://localhost:5000/api/segments/create', {
+            const createSeg = await axios.post('https://xenoapi.jsondev.in/api/segments/create', {
               name: `QB ${new Date().toISOString()}`,
               conditions: filteredConditions.map(c => ({ field: c.field.replace(' ', '_'), operator: c.operator, value: Number(c.value) })),
               logic: filteredConditions[1]?.connector || 'AND',
@@ -276,7 +276,7 @@ const QueryBuilder = () => {
             });
             const segId = createSeg.data.segment_id;
             setSegmentId(segId);
-            const resp = await axios.post('http://localhost:5000/api/campaigns/create', {
+            const resp = await axios.post('https://xenoapi.jsondev.in/api/campaigns/create', {
               segment_id: segId,
               campaign_name,
               message_template

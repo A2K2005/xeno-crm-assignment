@@ -13,7 +13,7 @@ const Login = () => {
     console.log('User Info:', decoded);
 
     try {
-      await fetch('http://localhost:5000/api/login', {
+      await fetch('https://xenoapi.jsondev.in/api/login', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({

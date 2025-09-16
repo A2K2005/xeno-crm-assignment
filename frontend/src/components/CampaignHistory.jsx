@@ -8,7 +8,7 @@ const CampaignHistory = () => {
   useEffect(() => {
     const run = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/campaigns', { withCredentials: true });
+        const res = await axios.get('https://xenoapi.jsondev.in/api/campaigns', { withCredentials: true });
         setItems(res.data);
       } catch (e) {
       } finally {

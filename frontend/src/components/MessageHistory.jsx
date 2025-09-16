@@ -8,7 +8,7 @@ const MessageHistory = () => {
   useEffect(() => {
     const load = async () => {
       try {
-        const res = await axios.get('http://localhost:5000/api/delivery/recent', { withCredentials: true });
+        const res = await axios.get('https://xenoapi.jsondev.in/api/delivery/recent', { withCredentials: true });
         setItems(res.data || []);
       } catch (e) {
       } finally {
