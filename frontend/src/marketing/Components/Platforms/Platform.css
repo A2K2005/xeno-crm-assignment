@@ -1,0 +1,149 @@
+:root {
+  --primaryColor: #eaf2ff;
+  --textColor: #1e3a8a;
+  --blackTextColor: #0f172a;
+  --bg-button: #1d4ed8;
+  --whiteColor: #f8fafc;
+}
+
+.platformSection {
+  width: 100%;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+}
+
+.platformContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding: 0 3rem;
+}
+
+.platformContent {
+  width: 40%;
+}
+
+.platformContent h1 {
+  font-size: 2.4rem;
+  margin-bottom: 1rem;
+  color: var(--textColor);
+}
+
+.platformContainer p {
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.buttonSection {
+  gap: 2rem;
+}
+
+.btn {
+  background: var(--primaryColor) !important;
+  color: var(--textColor) !important;
+  border: 2px solid var(--textColor);
+}
+
+.btn .icon {
+  transform: translateY(3px);
+}
+
+.btn:hover {
+  background: var(--bg-button) !important;
+  color: var(--whiteColor) !important;
+}
+
+.platformImg {
+  width: 30%;
+  object-fit: cover;
+}
+
+.platformImg img {
+  width: 100%;
+  mix-blend-mode: darken;
+}
+
+@media screen and (max-width: 1024px) {
+  .platformContent {
+    width: 42%;
+  }
+
+  .platformContent h1 {
+    font-size: 2rem;
+  }
+
+  .platformImg {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .platformSection {
+    justify-content: center;
+    height: 100vh;
+    margin-top: 40px;
+  }
+
+  .platformContainer {
+    flex-direction: column-reverse;
+    width: 80%;
+    height: 100%;
+    padding: 0;
+  }
+
+  .platformContent {
+    width: auto;
+  }
+
+  .platformContent h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .platformContent p {
+    margin-bottom: 1rem;
+  }
+
+  .platformImg {
+    width: auto;
+    height: 50%;
+  }
+
+  .platformImg img {
+    height: 100%;
+  }
+
+  .buttonSection {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+  }
+
+  .buttonSection .button {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .platformContainer {
+    width: 90%;
+  }
+
+  .platformContent h1 {
+    font-size: 1.5rem;
+  }
+
+  .platformContent p {
+    font-size: 0.9rem;
+  }
+}
+
+@media screen and (max-width: 310px) {
+  .platformImg {
+    height: 40%;
+  }
+}
+
+

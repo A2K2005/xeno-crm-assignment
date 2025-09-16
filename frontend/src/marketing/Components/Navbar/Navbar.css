@@ -1,0 +1,118 @@
+:root {
+  --primaryColor: #eaf2ff;
+  --textColor: #1e3a8a;
+  --blackTextColor: #0f172a;
+  --bg-button: #1d4ed8;
+  --whiteColor: #f8fafc;
+}
+
+.header {
+  justify-content: space-around;
+  width: 100%;
+  height: 80px;
+  z-index: 1000;
+  background: var(--primaryColor);
+}
+
+.logo img { height: 22px; display: block; }
+
+.logo {
+  color: #1e3a8a;
+}
+
+.logo span {
+  font-weight: 400;
+}
+
+.navList {
+  gap: 3rem;
+}
+
+.navItems .nav-anchor {
+  color: var(--textColor);
+  font-weight: 400;
+}
+
+.nav-anchor:hover {
+  color: var(--blackTextColor);
+}
+
+.button {
+  background: var(--bg-button);
+  color: var(--whiteColor);
+  font-weight: 500;
+}
+
+.button:hover {
+  color: var(--bg-button);
+  background: var(--primaryColor);
+  border: 2px solid var(--bg-button);
+}
+
+.closeNavbar,
+.toggleNavbar {
+  display: none;
+}
+
+@media screen and (max-width: 950px) {
+  .navList {
+    gap: 2rem;
+  }
+}
+
+@media screen and (max-width: 769px) {
+  .header {
+    padding: 0 3rem;
+  }
+
+  .navBar {
+    position: absolute;
+    top: -500px;
+    background: #b1df83;
+    width: 90%;
+    border-radius: 3px;
+    transition: 0.5s ease-in-out;
+    opacity: 1000;
+    z-index: 1000;
+  }
+
+  .activeNavbar {
+    top: 80px;
+  }
+
+  .navList {
+    flex-direction: column;
+    padding: 2rem 2rem;
+    gap: 1.5rem;
+  }
+
+  .closeNavbar,
+  .toggleNavbar {
+    display: block;
+  }
+
+  .toggleNavbar {
+    margin-left: auto;
+    font-size: 1.2rem;
+  }
+
+  .closeNavbar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1rem;
+  }
+}
+
+@media screen and (max-width: 425px) {
+  .header {
+    padding: 0 1.5rem;
+    height: 60px;
+  }
+
+  .logo {
+    font-size: 0.9rem;
+  }
+}
+
+
